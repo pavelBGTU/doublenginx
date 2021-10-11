@@ -1,0 +1,19 @@
+#upstream web1 {
+#    ip_hash;
+#    server 127.0.0.1:8001;
+#}
+
+# portal
+server {
+    location / {
+        proxy_pass http://localhost:8001;
+    }
+    listen 80;
+    server_name localhost;
+
+    location /static {
+        autoindex on;
+        alias /src/static/;
+    }
+}
+
